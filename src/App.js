@@ -91,7 +91,7 @@ class App extends Component {
         .query(null)
         .set("Accept", "text/json")
         .end((error, response) => {
-          console.log('weather', response.body.forecast.forecastday)
+          console.log("weather", response.body.forecast.forecastday);
           this.setState({
             days: response.body.forecast.forecastday
           });
@@ -105,8 +105,10 @@ class App extends Component {
     if (this.state.venues.length > 0) {
       return (
         <section className={styles.mainContainer}>
-          <input onChange={this.handleChange} />
-          <button onClick={this.handleSearch}>Submit</button>
+          <div>
+            <input onChange={this.handleChange} />
+            <button onClick={this.handleSearch}>Submit</button>
+          </div>
           <h1>{this.state.text}</h1>
           <Days days={this.state.days} />
           <h1>{this.state.text}</h1>

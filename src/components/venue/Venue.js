@@ -5,14 +5,16 @@ class Venue extends Component {
     const { venue } = this.props;
     return (
       <section className={styles.container}>
-        <div>Name: {venue.venue.name}</div>
-        <div>Address: {venue.venue.location.address}</div>
         <img
           src={`${venue.venue.categories[0].icon.prefix}bg_64${
             venue.venue.categories[0].icon.suffix
           }`}
           alt="venue-image"
         />
+        <h2>{venue.venue.name}</h2>
+        <p>{venue.venue.location.address}</p>
+        <p>{venue.venue.location.city}</p>
+        <p>{venue.venue.location.country}</p>
       </section>
     );
   }
