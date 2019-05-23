@@ -11,7 +11,7 @@ class Venue extends Component {
           }`}
           alt="venue-image"
         />
-        <h2>{venue.venue.name}</h2>
+        <p>{venue.venue.name}</p>
         <p>{venue.venue.location.address}</p>
         <p>{venue.venue.location.city}</p>
         <p>{venue.venue.location.country}</p>

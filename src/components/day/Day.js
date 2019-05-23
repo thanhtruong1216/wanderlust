@@ -12,7 +12,7 @@ class Day extends Component {
         <p>Max: {day.day.maxtemp_c} &ordm;C</p>
         <p>UV: {day.day.uv}</p>
         <img src={`https://${day.day.condition.icon}`} />
-        <h3>Date: {day.date} </h3>
+        <p>Date: {day.date} </p>
         <p>{day.day.condition.text}</p>
       </section>
     );

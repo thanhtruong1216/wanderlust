@@ -1,13 +1,72 @@
 .mainContainer
   max-width: 900pt
-  border: 1px solid red
   margin: 0 auto 0 auto
 
-h1 
+h1
   text-transform: uppercase
-  padding-left: 20pt
   font-family: Montserrat
+  text-align: center
 
-p 
+h3
+  font-family: Montserrat
+  text-align: center
+  color: #ffffff
+
+h1, h3 
+  letter-spacing: 0.2px
+
+p
   font-family: Work Sans
   margin: 0
+
+input 
+  font-size: 14pt
+
+main 
+  margin: 0px auto 50px auto
+  text-align: center
+  background-image: url("https://s3.amazonaws.com/codecademy-content/courses/intermediate-javascript-requests/wanderlust/background_photo_desktop.jpg")
+  background-size: cover
+  text-align: center
+  display: flex
+  align-items: center
+  justify-content: center
+  max-width: 900pt
+  form
+    margin-top: 50px
+    height: 200pt
+    max-width: 900pt
+    display: flex
+    justify-content: center
+    flex-direction: column
+    align-items: center
+
+.inputGroup
+  height: 30pt
+  max-width: 900pt
+  border: 1px solid transparent
+  border-radius: 10pt
+  background-color: gray
+  opacity: 0.5
+  display: flex
+  justify-content: flex-end
+  input 
+    max-width: 300pt
+    width: 170pt
+    padding: 5pt 10pt
+    border: none
+    background-color: transparent
+    color: white
+    font-family: Work Sans
+    &:focus
+      outline: none
+  span 
+    display: block
+
+  .searchIcon
+    height: 100%
+    width: 30pt
+    &:focus
+      outline: none
+
+
