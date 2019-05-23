@@ -4,6 +4,7 @@ import styles from "./App.module.sass";
 import Venues from "./components/venues/Venues";
 import Days from "./components/days/Days";
 import search from "./images/search-solid.svg";
+import GoogleMap from "./components/GoogleMap";
 
 const clientId = "FBEG21R2F3M5S1JSJOV0AZ52KUCPOQCFZQPJCCDFAQW3W4B4";
 const clientSecret = "JDTQTTOYRVTQSP5ELBXF25BHQLTHITVDUF5JST4XARBCA0AL";
@@ -44,11 +45,11 @@ class App extends Component {
         .set("Accept", "text/json")
         .end((error, response) => {
           let venuesResponse = response.body.response;
-          this.setState({ venues: venuesResponse.groups[0].items });
-          console.log(
-            "venues",
-            this.state.venues.map(v => console.log(v.venue))
-          );
+          this.setState({
+            venues: venuesResponse.groups[0].items,
+            locations:
+              venuesResponse.groups[0].items.venue.location.labeledLatLngs[0]
+          });
         });
     } catch (error) {
       console.log(error);
@@ -79,7 +80,6 @@ class App extends Component {
         .query(null)
         .set("Accept", "text/json")
         .end((error, response) => {
-          console.log("data", response.body.response.groups[0].items);
           this.setState({
             defaultVenues: response.body.response.groups[0].items
           });
@@ -132,7 +132,7 @@ class App extends Component {
           <h1>Weather</h1>
           <Days days={this.state.days} />
           <h1>TOP ATTRACTIONS</h1>
-          <Venues venues={this.state.venues} />
+          <Venues venues={this.state.defaultVenues} />
         </section>
       );
     } else {
@@ -162,6 +162,7 @@ class App extends Component {
           <Days days={this.state.defaultDays} />
           <h1>TOP ATTRACTIONS</h1>
           <Venues venues={this.state.defaultVenues} />
+          <GoogleMap />
         </section>
       );
     }
