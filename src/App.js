@@ -68,7 +68,7 @@ class App extends Component {
 
   componentDidMount() {
     const text = "Sai Gon";
-    const urlToFetch = `${url}${text}&limit=10&client_id=${clientId}&client_secret=${clientSecret}&v=20190519`;
+    const urlToFetch = `${url}${text}&limit=4&client_id=${clientId}&client_secret=${clientSecret}&v=20190519`;
     const urlWeatherToFetch = `${forecastUrl}${apiKey}&q=${text}&days=4&hour=11`;
     try {
       superagent
@@ -76,6 +76,7 @@ class App extends Component {
         .query(null)
         .set("Accept", "text/json")
         .end((error, response) => {
+          console.log("data", response.body.response.groups[0].items);
           this.setState({
             default: response.body.response.groups[0].items
           });
@@ -90,6 +91,7 @@ class App extends Component {
         .query(null)
         .set("Accept", "text/json")
         .end((error, response) => {
+          console.log('weather', response.body.forecast.forecastday)
           this.setState({
             days: response.body.forecast.forecastday
           });
@@ -105,7 +107,9 @@ class App extends Component {
         <section className={styles.mainContainer}>
           <input onChange={this.handleChange} />
           <button onClick={this.handleSearch}>Submit</button>
+          <h1>{this.state.text}</h1>
           <Days days={this.state.days} />
+          <h1>{this.state.text}</h1>
           <Venues venues={this.state.venues} />
         </section>
       );
@@ -114,7 +118,9 @@ class App extends Component {
         <section className={styles.mainContainer}>
           <input onChange={this.handleChange} />
           <button onClick={this.handleSearch}>Submit</button>
+          <h1>Sai Gon's Waeather</h1>
           <Days days={this.state.days} />
+          <h1>TOP ATTRACTIONS</h1>
           <Venues venues={this.state.default} />
         </section>
       );
