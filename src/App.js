@@ -46,7 +46,8 @@ class App extends Component {
         .end((error, response) => {
           let venuesResponse = response.body.response;
           this.setState({
-            venues: venuesResponse.groups[0].items
+            venues: venuesResponse.groups[0].items,
+            defaultVenues: []
           });
         });
     } catch (error) {
@@ -93,7 +94,6 @@ class App extends Component {
         .query(null)
         .set("Accept", "text/json")
         .end((error, response) => {
-          console.log("weather", response.body.forecast.forecastday);
           this.setState({
             defaultDays: response.body.forecast.forecastday
           });
