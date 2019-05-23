@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./Day.module.sass";
 
 class Day extends Component {
   render() {
