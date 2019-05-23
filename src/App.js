@@ -46,9 +46,7 @@ class App extends Component {
         .end((error, response) => {
           let venuesResponse = response.body.response;
           this.setState({
-            venues: venuesResponse.groups[0].items,
-            locations:
-              venuesResponse.groups[0].items.venue.location.labeledLatLngs[0]
+            venues: venuesResponse.groups[0].items
           });
         });
     } catch (error) {
@@ -80,6 +78,7 @@ class App extends Component {
         .query(null)
         .set("Accept", "text/json")
         .end((error, response) => {
+          console.log("data", response.body.response.groups[0].items);
           this.setState({
             defaultVenues: response.body.response.groups[0].items
           });
@@ -132,7 +131,8 @@ class App extends Component {
           <h1>Weather</h1>
           <Days days={this.state.days} />
           <h1>TOP ATTRACTIONS</h1>
-          <Venues venues={this.state.defaultVenues} />
+          <Venues venues={this.state.venues} />
+          <GoogleMap locations={this.state.venues} />
         </section>
       );
     } else {
@@ -162,7 +162,7 @@ class App extends Component {
           <Days days={this.state.defaultDays} />
           <h1>TOP ATTRACTIONS</h1>
           <Venues venues={this.state.defaultVenues} />
-          <GoogleMap />
+          <GoogleMap locations={this.state.defaultVenues} />
         </section>
       );
     }

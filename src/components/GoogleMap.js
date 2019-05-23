@@ -8,7 +8,40 @@ class GoogleMap extends Component {
     super(props);
     this.mapDom = React.createRef();
     this.state = {
-      locations: data.locations,
+      //   {
+      //     id: 1,
+      //     title: "I studied here for four years(2009-2013)",
+      //     image:
+      //       "http://imgs.vietnamnet.vn/Images/2017/08/24/07/20170824075752-can-tho.jpg",
+      //     address: "3/2 Street, Ninh Kieu District, Can Tho City",
+      //     location: {
+      //       lat: 10.030999,
+      //       lng: 105.76879
+      //     }
+      //   },
+      //   {
+      //     id: 2,
+      //     title: "I live here currently",
+      //     image:
+      //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWdxwl7wcQZoboWYr-u4O_xKry6ajsSX_T0Fk6Esh6YCwhMCI5",
+      //     address: "Nguyen Huu Tho Street, District 7, Ho Chi Minh City",
+      //     location: {
+      //       lat: 10.758334,
+      //       lng: 106.672211
+      //     }
+      //   },
+      //   {
+      //     id: 3,
+      //     title: "I worked here for three years(2013-2016)",
+      //     image:
+      //       "http://kgtv.vn/wp-content/uploads/2015/07/dai-ptva-th-ghep-may-2015.jpg",
+      //     address: "39 Dong Da Street, District Vinh Lac, Rach Gia City",
+      //     location: {
+      //       lat: 9.994949,
+      //       lng: 105.095413
+      //     }
+      //   }
+      // ],
       largeInfowindow: null
     };
   }
@@ -31,7 +64,7 @@ class GoogleMap extends Component {
   initMap() {
     let mapConfigs = {
       center: { lat: 10.758334, lng: 106.672211 },
-      zoom: 8,
+      zoom: 9,
       maxZoom: 15,
       minZoom: 6,
       styles: styles,
@@ -55,19 +88,21 @@ class GoogleMap extends Component {
     }
     let defaultIcon = makeMarkerIcon("0091ff");
     let highlightedIcon = makeMarkerIcon("FFFF24");
-    for (let i = 0; i < this.state.locations.length; i++) {
-      let location = this.state.locations[i];
-      let position = location.location;
+    for (let i = 0; i < this.props.locations.length; i++) {
+      let location = this.props.locations[i];
+      let lat = location.venue.location.lat;
+      let lng = location.venue.location.lng;
+      let position = { lat: lat, lng: lng };
       let title = location.title;
       let image = location.image;
-      let address = location.address;
+      let address = location.venue.location.address;
       let marker = new google.maps.Marker({
         map: this.map,
         position: position,
-        title: title,
+        // title: title,
         icon: defaultIcon,
-        animation: google.maps.Animation.DROP,
-        image: image,
+        // animation: google.maps.Animation.DROP,
+        // image: image,
         address: address
       });
       marker.addListener("click", () => {
