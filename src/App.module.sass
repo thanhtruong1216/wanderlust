@@ -22,6 +22,7 @@ p
 
 input 
   font-size: 14pt
+  font-family: Work Sans
 
 header 
   padding: 10pt 0
@@ -29,10 +30,11 @@ header
 
 button
   font-size: 14pt
+
 main 
   margin: 0px auto 50px auto
   text-align: center
-  background-image: url("https://s3.amazonaws.com/codecademy-content/courses/intermediate-javascript-requests/wanderlust/background_photo_desktop.jpg")
+  background-image: url("https://s3.amazonaws.com/codecademy-content/courses/intermediate-javascript-requests/wanderlust/background_photo_moble.jpg")
   background-size: cover
   text-align: center
   display: flex
@@ -88,5 +90,9 @@ main
     background-color: transparent
     &:focus
       outline: none
+
+@media screen and (min-width: 1023px )
+  main 
+    background-image: url("https://s3.amazonaws.com/codecademy-content/courses/intermediate-javascript-requests/wanderlust/background_photo_desktop.jpg")
 
 
