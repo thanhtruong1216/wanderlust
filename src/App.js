@@ -174,8 +174,10 @@ class App extends Component {
           {topContent}
           <h1>Weather</h1>
           <Days days={this.state.defaultWeather} />
-          <h1>TOP ATTRACTIONS</h1>
-          <button onClick={this.handleMap}>Hide map</button>
+          <div className={styles.headerAttractions}>
+            <h1>TOP ATTRACTIONS</h1>
+            <button onClick={this.handleMap}>Hide map</button>
+          </div>
           <GoogleMap locations={this.state.defaultVenues} />
         </div>
       );
@@ -201,8 +203,10 @@ class App extends Component {
           {topContent}
           <h1>Weather</h1>
           <Days days={this.state.days} />
-          <h1>TOP ATTRACTIONS</h1>
-          <button onClick={this.handleMapIfSearch}>Hide map</button>
+          <div className={styles.headerAttractions}>
+            <h1>TOP ATTRACTIONS</h1>
+            <button onClick={this.handleMapIfSearch}>Hide map</button>
+          </div>
           <GoogleMap locations={this.state.venues} />
         </div>
       );
@@ -212,8 +216,10 @@ class App extends Component {
           {topContent}
           <h1>Weather</h1>
           <Days days={this.state.days} />
-          <h1>TOP ATTRACTIONS</h1>
-          <button onClick={this.handleMapIfSearch}>Show map</button>
+          <div className={styles.headerAttractions}>
+            <h1>TOP ATTRACTIONS</h1>
+            <button onClick={this.handleMapIfSearch}>Show map</button>
+          </div>
           <Venues venues={this.state.venues} />
         </div>
       );
