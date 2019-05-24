@@ -5,7 +5,6 @@ import styles from "./Venues.module.sass";
 class Venues extends Component {
   render() {
     const { venues } = this.props;
-    console.log("log", venues);
     return (
       <section className={styles.container}>
         {venues.map((venue, index) => {

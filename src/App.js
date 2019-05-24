@@ -150,7 +150,6 @@ class App extends Component {
       <div>
         <header>
           <img
-            class="logo"
             src="https://s3.amazonaws.com/codecademy-content/courses/intermediate-javascript-requests/wanderlust/logo.svg"
             alt="logo"
           />
