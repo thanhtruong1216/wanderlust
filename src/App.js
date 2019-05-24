@@ -147,23 +147,6 @@ class App extends Component {
   render() {
     let nodeMapDefault = null;
     let btnText = "";
-    if (this.state.showMap) {
-      nodeMapDefault = <GoogleMap locations={this.state.defaultVenues} />;
-      btnText = <button onClick={this.handleMap}>Hide map</button>;
-    } else {
-      nodeMapDefault = <button onClick={this.handleMap}>Show map</button>;
-    }
-
-    let nodeMapIfSearch = null;
-    if (this.state.showSearchResultInMap) {
-      nodeMapIfSearch = <GoogleMap locations={this.state.venues} />;
-      btnText = <button onClick={this.handleMapIfSearch}>Hide map</button>;
-    } else {
-      nodeMapIfSearch = (
-        <button onClick={this.handleMapIfSearch}>Show map</button>
-      );
-    }
-
     const topContent = (
       <div>
         <header>
@@ -186,6 +169,37 @@ class App extends Component {
         </main>
       </div>
     );
+    if (this.state.showMap) {
+      nodeMapDefault = (
+        <div>
+          {topContent}
+          <h1>Weather</h1>
+          <Days days={this.state.defaultWeather} />
+          <h1>TOP ATTRACTIONS</h1>
+          <button onClick={this.handleMap}>Hide map</button>
+          <GoogleMap locations={this.state.defaultVenues} />
+        </div>
+      );
+    } else {
+      nodeMapDefault = (
+        <div>
+          {topContent}
+          <h1>Weather</h1>
+          <Days days={this.state.defaultWeather} />
+          <h1>TOP ATTRACTIONS</h1>
+          <button onClick={this.handleMap}>Show map</button>
+          <Venues venues={this.state.defaultLocations} />
+        </div>
+      );
+    }
+
+    let nodeMapIfSearch = null;
+    if (this.state.showSearchResultInMap) {
+      nodeMapIfSearch = <GoogleMap locations={this.state.venues} />;
+      btnText = <button onClick={this.handleMapIfSearch}>Hide map</button>;
+    } else {
+      btnText = <button onClick={this.handleMapIfSearch}>Show map</button>;
+    }
     if (this.state.venues.length > 0 && this.state.days.length > 0) {
       return (
         <section className={styles.mainContainer}>
@@ -194,21 +208,12 @@ class App extends Component {
           <Days days={this.state.days} />
           <h1>TOP ATTRACTIONS</h1>
           <Venues venues={this.state.venues} />
-          {btnText}
           {nodeMapIfSearch}
         </section>
       );
     } else {
       return (
-        <section className={styles.mainContainer}>
-          {topContent}
-          <h1>Weather</h1>
-          <Days days={this.state.defaultDays} />
-          <h1>TOP ATTRACTIONS</h1>
-          <Venues venues={this.state.defaultLocations} />
-          {btnText}
-          {nodeMapDefault}
-        </section>
+        <section className={styles.mainContainer}>{nodeMapDefault}</section>
       );
     }
   }

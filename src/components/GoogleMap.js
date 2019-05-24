@@ -35,7 +35,7 @@ class GoogleMap extends Component {
     }
     let mapConfigs = {
       center: { lat: centerLat, lng: centerLng },
-      zoom: 12,
+      zoom: 13,
       maxZoom: 15,
       minZoom: 6,
       styles: styles,
