@@ -73,6 +73,7 @@ class App extends Component {
     const text = "Sai Gon";
     const urlToFetch = `${url}${text}&limit=6&client_id=${clientId}&client_secret=${clientSecret}&v=20190519`;
     const urlWeatherToFetch = `${forecastUrl}${apiKey}&q=${text}&days=6&hour=11`;
+    debugger;
     try {
       superagent
         .get(urlToFetch)
@@ -103,9 +104,6 @@ class App extends Component {
   }
 
   handleSearch = e => {
-    this.setState({
-      defaultVenues: []
-    });
     const urlWeatherToFetch = `${forecastUrl}${apiKey}&q=${
       this.state.text
     }&days=4&hour=11`;
@@ -113,6 +111,7 @@ class App extends Component {
     const urlToFetch = `${url}${
       this.state.text
     }&limit=10&client_id=${clientId}&client_secret=${clientSecret}&v=20190519`;
+    debugger;
     try {
       superagent
         .get(urlToFetch)
@@ -125,7 +124,9 @@ class App extends Component {
           });
         });
     } catch (error) {
-      console.log(error);
+      this.setState({
+        venues: this.state.defaultLocations
+      });
     }
 
     try {
@@ -139,7 +140,9 @@ class App extends Component {
           });
         });
     } catch (error) {
-      console.log(error);
+      this.setState({
+        days: this.state.defaultWeather
+      });
     }
     e.preventDefault();
   };
@@ -171,10 +174,10 @@ class App extends Component {
       nodeMapDefault = (
         <div>
           {topContent}
-          <h1>Weather</h1>
+          <h1>Sai Gon Weather</h1>
           <Days days={this.state.defaultWeather} />
           <div className={styles.headerAttractions}>
-            <h1>TOP ATTRACTIONS</h1>
+            <h1>Sai Gon top attractions</h1>
             <button onClick={this.handleMap}>Hide map</button>
           </div>
           <GoogleMap locations={this.state.defaultVenues} />
@@ -184,10 +187,10 @@ class App extends Component {
       nodeMapDefault = (
         <div>
           {topContent}
-          <h1>Weather</h1>
+          <h1>Sai Gon Weather</h1>
           <Days days={this.state.defaultWeather} />
           <div className={styles.headerAttractions}>
-            <h1>TOP ATTRACTIONS</h1>
+            <h1>Sai Gon top attractions</h1>
             <button onClick={this.handleMap}>Show map</button>
           </div>
           <Venues venues={this.state.defaultLocations} />
@@ -200,10 +203,10 @@ class App extends Component {
       nodeMapIfSearch = (
         <div>
           {topContent}
-          <h1>Weather</h1>
+          <h1>{this.state.text} Weather</h1>
           <Days days={this.state.days} />
           <div className={styles.headerAttractions}>
-            <h1>TOP ATTRACTIONS</h1>
+            <h1>{this.state.text} top attractions</h1>
             <button onClick={this.handleMapIfSearch}>Hide map</button>
           </div>
           <GoogleMap locations={this.state.venues} />
@@ -213,10 +216,10 @@ class App extends Component {
       nodeMapIfSearch = (
         <div>
           {topContent}
-          <h1>Weather</h1>
+          <h1>{this.state.text} Weather</h1>
           <Days days={this.state.days} />
           <div className={styles.headerAttractions}>
-            <h1>TOP ATTRACTIONS</h1>
+            <h1>{this.state.text} top attractions</h1>
             <button onClick={this.handleMapIfSearch}>Show map</button>
           </div>
           <Venues venues={this.state.venues} />
