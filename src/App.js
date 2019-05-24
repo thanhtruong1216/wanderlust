@@ -106,7 +106,7 @@ class App extends Component {
   handleSearch = e => {
     const urlWeatherToFetch = `${forecastUrl}${apiKey}&q=${
       this.state.text
-    }&days=4&hour=11`;
+    }&days=6&hour=11`;
 
     const urlToFetch = `${url}${
       this.state.text
