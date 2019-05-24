@@ -2,7 +2,6 @@ import React, { Component } from "react";
 // import "../App.sass";
 import styles from "./StylesMap";
 import "./Map.sass";
-import data from "./Data";
 class GoogleMap extends Component {
   constructor(props) {
     super(props);
@@ -28,8 +27,14 @@ class GoogleMap extends Component {
   }
 
   initMap() {
+    let centerLat;
+    let centerLng;
+    for (let i = 0; i < this.props.locations.length; i++) {
+      centerLat = this.props.locations[0].venue.location.lat;
+      centerLng = this.props.locations[0].venue.location.lng;
+    }
     let mapConfigs = {
-      center: { lat: 10.770856, lng: 106.670666 },
+      center: { lat: centerLat, lng: centerLng },
       zoom: 12,
       maxZoom: 15,
       minZoom: 6,
@@ -64,6 +69,9 @@ class GoogleMap extends Component {
         location.venue.categories[0].icon.suffix
       }`;
       let address = location.venue.location.address;
+      let centerLat = this.props.locations[0].venue.location.lat;
+      let centerLng = this.props.locations[0].venue.location.lng;
+      mapConfigs.center = { lat: centerLat, lng: centerLng };
       let marker = new google.maps.Marker({
         map: this.map,
         position: position,

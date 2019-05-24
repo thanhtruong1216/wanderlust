@@ -103,6 +103,12 @@ class App extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.setState({
+      defaultVenues: []
+    });
+  }
+
   render() {
     if (this.state.venues.length > 0 && this.state.days.length > 0) {
       return (
