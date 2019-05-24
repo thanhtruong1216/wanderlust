@@ -146,7 +146,6 @@ class App extends Component {
 
   render() {
     let nodeMapDefault = null;
-    let btnText = "";
     const topContent = (
       <div>
         <header>
@@ -195,21 +194,31 @@ class App extends Component {
 
     let nodeMapIfSearch = null;
     if (this.state.showSearchResultInMap) {
-      nodeMapIfSearch = <GoogleMap locations={this.state.venues} />;
-      btnText = <button onClick={this.handleMapIfSearch}>Hide map</button>;
-    } else {
-      btnText = <button onClick={this.handleMapIfSearch}>Show map</button>;
-    }
-    if (this.state.venues.length > 0 && this.state.days.length > 0) {
-      return (
-        <section className={styles.mainContainer}>
+      nodeMapIfSearch = (
+        <div>
           {topContent}
           <h1>Weather</h1>
           <Days days={this.state.days} />
           <h1>TOP ATTRACTIONS</h1>
+          <button onClick={this.handleMapIfSearch}>Hide map</button>
+          <GoogleMap locations={this.state.venues} />
+        </div>
+      );
+    } else {
+      nodeMapIfSearch = (
+        <div>
+          {topContent}
+          <h1>Weather</h1>
+          <Days days={this.state.days} />
+          <h1>TOP ATTRACTIONS</h1>
+          <button onClick={this.handleMapIfSearch}>Show map</button>
           <Venues venues={this.state.venues} />
-          {nodeMapIfSearch}
-        </section>
+        </div>
+      );
+    }
+    if (this.state.venues.length > 0 && this.state.days.length > 0) {
+      return (
+        <section className={styles.mainContainer}>{nodeMapIfSearch}</section>
       );
     } else {
       return (
