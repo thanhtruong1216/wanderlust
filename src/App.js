@@ -111,7 +111,6 @@ class App extends Component {
     const urlToFetch = `${url}${
       this.state.text
     }&limit=10&client_id=${clientId}&client_secret=${clientSecret}&v=20190519`;
-    debugger;
     try {
       superagent
         .get(urlToFetch)
@@ -162,7 +161,11 @@ class App extends Component {
           <form>
             <h3>Where do you want to land?</h3>
             <div className={styles.inputGroup}>
-              <input type="text" onChange={this.handleChange} placeholder="Typing the place..." />
+              <input
+                type="text"
+                onChange={this.handleChange}
+                placeholder="Typing the place..."
+              />
               <button onClick={this.handleSearch} className={styles.searchIcon}>
                 <img src={search} alt="search" />
               </button>
