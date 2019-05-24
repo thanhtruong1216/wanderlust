@@ -7,10 +7,9 @@
 @media screen and (min-width: 1023px) 
   .container
     display: grid
-    grid-template: 230pt 230pt/1fr 1fr 1fr
-    justify-items: center
-    grid-gap: 10pt
+    grid-template: repeat(2, 230pt)/repeat(3, 200pt)
+    grid-gap: 20pt
 
 @media screen and (min-width: 1439px) 
   .container
-    grid-template: 230pt 230pt/1fr 1fr 1fr 1fr
+    grid-template: repeat(2, 230pt)/repeat(4, 1fr)
