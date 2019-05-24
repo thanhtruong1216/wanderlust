@@ -127,6 +127,7 @@ class App extends Component {
       this.setState({
         venues: this.state.defaultLocations
       });
+      this.state.text = "";
     }
 
     try {
@@ -161,7 +162,7 @@ class App extends Component {
           <form>
             <h3>Where do you want to land?</h3>
             <div className={styles.inputGroup}>
-              <input onChange={this.handleChange} />
+              <input type="text" onChange={this.handleChange} placeholder="Typing the place..." />
               <button onClick={this.handleSearch} className={styles.searchIcon}>
                 <img src={search} alt="search" />
               </button>
