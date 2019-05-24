@@ -2,3 +2,15 @@
   display: flex
   justify-content: center
   flex-wrap: wrap
+
+@media screen and (min-width: 1023px) 
+  .container
+    display: grid
+    grid-template: 200pt 200pt/1fr 1fr 1fr
+    justify-items: center
+    grid-gap: 10pt
+
+@media screen and (min-width: 1439px) 
+  .container
+    grid-template: 200pt 200pt/1fr 1fr 1fr 1fr
+
