@@ -9,7 +9,7 @@ class Venue extends Component {
           src={`${venue.venue.categories[0].icon.prefix}bg_64${
             venue.venue.categories[0].icon.suffix
           }`}
-          alt="venue-image"
+          alt="venue"
         />
         <p>{venue.venue.name}</p>
         <p>{venue.venue.location.address}</p>

@@ -11,7 +11,7 @@ class Day extends Component {
         <p>Min: {day.day.mintemp_c} &ordm;C</p>
         <p>Max: {day.day.maxtemp_c} &ordm;C</p>
         <p>UV: {day.day.uv}</p>
-        <img src={`https://${day.day.condition.icon}`} />
+        <img src={`https://${day.day.condition.icon}`} alt="weather-icon" />
         <p>Date: {day.date} </p>
         <p>{day.day.condition.text}</p>
       </section>

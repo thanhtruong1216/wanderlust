@@ -5,14 +5,8 @@ import Venues from "./components/venues/Venues";
 import Days from "./components/days/Days";
 import search from "./images/search-solid.svg";
 import GoogleMap from "./components/GoogleMap";
-
-const clientId = "FBEG21R2F3M5S1JSJOV0AZ52KUCPOQCFZQPJCCDFAQW3W4B4";
-const clientSecret = "JDTQTTOYRVTQSP5ELBXF25BHQLTHITVDUF5JST4XARBCA0AL";
-const url = "https://api.foursquare.com/v2/venues/explore?near=";
-
-// APIXU Info
-const apiKey = "134680bf827c4910b3685128191905";
-const forecastUrl = "https://api.apixu.com/v1/forecast.json?key=";
+import { apiKey, forecastUrl } from "./apiKeys/WeatherKeys";
+import { clientId, clientSecret, url } from "./apiKeys/VenueKeys";
 
 class App extends Component {
   state = {
@@ -31,6 +25,9 @@ class App extends Component {
 
   handleSearch = e => {
     e.preventDefault();
+    this.setState({
+      defaultVenues: [] || null
+    });
     const urlWeatherToFetch = `${forecastUrl}${apiKey}&q=${
       this.state.text
     }&days=4&hour=11`;
@@ -46,8 +43,7 @@ class App extends Component {
         .end((error, response) => {
           let venuesResponse = response.body.response;
           this.setState({
-            venues: venuesResponse.groups[0].items,
-            defaultVenues: []
+            venues: venuesResponse.groups[0].items
           });
         });
     } catch (error) {
@@ -79,7 +75,6 @@ class App extends Component {
         .query(null)
         .set("Accept", "text/json")
         .end((error, response) => {
-          console.log("data", response.body.response.groups[0].items);
           this.setState({
             defaultVenues: response.body.response.groups[0].items
           });
@@ -101,12 +96,6 @@ class App extends Component {
     } catch (error) {
       console.log(error);
     }
-  }
-
-  componentWillUnmount() {
-    this.setState({
-      defaultVenues: []
-    });
   }
 
   render() {
